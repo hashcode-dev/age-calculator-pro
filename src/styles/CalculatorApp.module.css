@@ -1,0 +1,197 @@
+.panel {
+  padding: 19px;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 19px;
+}
+
+.resetBtn {
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 6px;
+  padding: 5px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+}
+
+.tab {
+  border: 0;
+  border-radius: 9999px;
+  padding: 8px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.tabActive {
+  color: white;
+  background: var(--gradient-primary);
+  box-shadow: 0 8px 16px rgb(79 70 229 / 25%);
+}
+
+.formGrid {
+  display: grid;
+  gap: 13px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 13px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  height: 36px;
+  padding: 0 10px;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.field input:focus-visible {
+  outline: 0;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-ring);
+}
+
+.error {
+  color: #ba1a1a;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.cta {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  background: var(--gradient-primary);
+  cursor: pointer;
+}
+
+.resultGrid {
+  margin-top: 19px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.statCard {
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+
+.statLabel {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.statValue {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 4px;
+}
+
+.metricGrid {
+  margin-top: 13px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metricCard {
+  padding: 11px;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.metricLabel {
+  display: block;
+  color: var(--color-muted);
+  font-size: 11px;
+}
+
+.metricValue {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ghostBtn {
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  padding: 8px 11px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .resultGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metricGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .panel {
+    padding: 13px;
+  }
+
+  .headerRow {
+    flex-wrap: wrap;
+  }
+
+  .formGrid,
+  .resultGrid {
+    grid-template-columns: 1fr;
+  }
+}

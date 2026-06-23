@@ -1,0 +1,143 @@
+.hero {
+  padding: 72px 0 26px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.hero p {
+  margin-top: 14px;
+  color: var(--color-muted);
+  max-width: 760px;
+}
+
+.metaRow {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.contentWrap {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 18px;
+  padding-bottom: 60px;
+}
+
+.sideNav {
+  position: sticky;
+  top: 92px;
+  align-self: start;
+  padding: 16px;
+}
+
+.sideNav h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.sideNav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.sideNav a {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.mainContent {
+  padding: 22px;
+}
+
+.mainContent section {
+  scroll-margin-top: 96px;
+  margin-bottom: 24px;
+}
+
+.mainContent section:last-child {
+  margin-bottom: 0;
+}
+
+.mainContent h2 {
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.mainContent p {
+  color: var(--color-text);
+}
+
+.mainContent ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--color-text);
+}
+
+.mainContent li + li {
+  margin-top: 6px;
+}
+
+.callout {
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface));
+  padding: 12px;
+  margin-top: 10px;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.contactCard {
+  padding: 18px;
+}
+
+.contactGrid {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+@media (max-width: 980px) {
+  .contentWrap {
+    grid-template-columns: 1fr;
+  }
+
+  .sideNav {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 52px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .mainContent {
+    padding: 16px;
+  }
+}

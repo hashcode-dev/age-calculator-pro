@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import styles from '../styles/AboutPage.module.css';
+
+const pageTitle = 'About Us - Age Calculator Pro | Free Age Calculator by Date of Birth';
+const pageDescription =
+  'Learn about Age Calculator Pro - the team behind a free, accurate, and private age calculator by date of birth. Our mission, principles, and product standards.';
+const pageKeywords =
+  'about age calculator pro, age calculator team, free age calculator, date of birth calculator, age calculator online, age calculator app';
+const canonical = 'https://agecalculatorpro.app/about-us';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Age Calculator Pro',
+    url: 'https://agecalculatorpro.app/',
+  },
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <div class={styles.heroGrid}>
+          <div>
+            <h1>About Age Calculator Pro</h1>
+            <p>
+              Age Calculator Pro is built to make date-based calculations precise, simple, and universally accessible.
+              We combine calendar-accurate math, thoughtful product design, and a privacy-first approach so anyone can
+              calculate age and life metrics in seconds.
+            </p>
+            <p>
+              Our focus is reliability at scale: fast calculations, understandable outputs, and transparent product behavior.
+            </p>
+          </div>
+
+          <div class={styles.metaStack}>
+            <article class={`card ${styles.metaCard}`}>
+              <p class={styles.metaTitle}>Product Category</p>
+              <p class={styles.metaValue}>Date Intelligence</p>
+            </article>
+            <article class={`card ${styles.metaCard}`}>
+              <p class={styles.metaTitle}>Launch Model</p>
+              <p class={styles.metaValue}>Free Micro SaaS</p>
+            </article>
+            <article class={`card ${styles.metaCard}`}>
+              <p class={styles.metaTitle}>Core Promise</p>
+              <p class={styles.metaValue}>Accurate by Default</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class={styles.section}>
+      <div class="container">
+        <div class={styles.sectionHead}>
+          <h2>Our Mission</h2>
+          <p>Deliver mathematically precise age tools that are fast, intuitive, and useful in real life.</p>
+        </div>
+        <div class={styles.grid3}>
+          <article class={`card ${styles.cardBody}`}>
+            <h3>Precision First</h3>
+            <p>Calendar-accurate logic is the foundation of every age and difference result.</p>
+          </article>
+          <article class={`card ${styles.cardBody}`}>
+            <h3>Clarity in Output</h3>
+            <p>Results are structured so users can instantly understand totals and life milestones.</p>
+          </article>
+          <article class={`card ${styles.cardBody}`}>
+            <h3>Accessible by Design</h3>
+            <p>Responsive layouts, semantic structure, and keyboard-friendly controls are built-in.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class={styles.section}>
+      <div class="container">
+        <div class={styles.sectionHead}>
+          <h2>What We Build</h2>
+          <p>Age Calculator Pro is designed for personal planning, education, and professional utility workflows.</p>
+        </div>
+        <div class={styles.grid2}>
+          <article class={`card ${styles.cardBody}`}>
+            <h3>Core Capabilities</h3>
+            <ul class={styles.list}>
+              <li>Exact age calculations in years, months, weeks, days, hours, and minutes.</li>
+              <li>Age difference calculations between two dates of birth.</li>
+              <li>Life statistics including milestone projections and estimated totals.</li>
+              <li>Result sharing plus PNG and PDF exports for practical reporting.</li>
+            </ul>
+          </article>
+
+          <article class={`card ${styles.cardBody}`}>
+            <h3>How We Measure Quality</h3>
+            <ul class={styles.list}>
+              <li>Correctness of date arithmetic across edge cases.</li>
+              <li>Fast time-to-result on mobile and desktop devices.</li>
+              <li>Readable visual hierarchy and low-friction interactions.</li>
+              <li>Privacy controls with minimal data exposure.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class={styles.section}>
+      <div class="container">
+        <div class={styles.sectionHead}>
+          <h2>How We Work</h2>
+          <p>We follow a practical product process that prioritizes correctness and user trust.</p>
+        </div>
+
+        <article class={`card ${styles.timeline}`}>
+          <ol>
+            <li><strong>Research:</strong> identify common user scenarios and date-calculation pain points.</li>
+            <li><strong>Modeling:</strong> implement deterministic age logic with robust validation constraints.</li>
+            <li><strong>Design:</strong> translate outputs into readable, premium SaaS-grade interfaces.</li>
+            <li><strong>Verification:</strong> validate behavior through build checks and iterative quality reviews.</li>
+            <li><strong>Iteration:</strong> refine performance, accessibility, and usability based on feedback.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class={styles.section}>
+      <div class="container">
+        <div class={`card ${styles.ctaBand}`}>
+          <div>
+            <h2>Trust and Transparency</h2>
+            <p>
+              We keep core calculations free, provide clear legal policies, and continuously improve product reliability.
+            </p>
+          </div>
+          <div class={styles.actions}>
+            <a class={styles.primaryBtn} href="/">Open Calculator</a>
+            <a class={styles.secondaryBtn} href="/privacy-policy">Read Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

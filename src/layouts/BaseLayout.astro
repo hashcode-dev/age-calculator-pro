@@ -1,0 +1,95 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  keywords?: string;
+  ogType?: 'website' | 'article';
+  schemas?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  keywords = 'age calculator, date of birth calculator, age calculator by date of birth, age calculator online, age calculator google, age calculator formula, age calculator by date of birth free, age calculator app, age calculator nepali, days calculator, jpg to pdf',
+  ogType = 'website',
+  schemas = [],
+} = Astro.props;
+
+const siteUrl = 'https://agecalculatorpro.app';
+const ogImage = `${siteUrl}/og-logo.svg`;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Age Calculator Pro" />
+    <meta name="publisher" content="Age Calculator Pro" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="bingbot" content="index,follow" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="rating" content="general" />
+    <meta name="language" content="English" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" hreflang="en" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <title>{title}</title>
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Age Calculator Pro - Calculate Your Exact Age by Date of Birth" />
+    <meta property="og:site_name" content="Age Calculator Pro" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@agecalculatorpro" />
+    <meta name="twitter:creator" content="@agecalculatorpro" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Age Calculator Pro - Calculate Your Exact Age by Date of Birth" />
+
+    {
+      schemas.map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+
+    <script is:inline>
+      (() => {
+        const pref = localStorage.getItem('acp-theme') ?? 'system';
+        const darkBySystem = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const resolved = pref === 'system' ? (darkBySystem ? 'dark' : 'light') : pref;
+        document.documentElement.setAttribute('data-theme', resolved);
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

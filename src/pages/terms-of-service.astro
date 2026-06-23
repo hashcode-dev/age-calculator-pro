@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import styles from '../styles/PolicyPage.module.css';
+
+const pageTitle = 'Terms of Service - Age Calculator Pro | Free Age Calculator Online';
+const pageDescription =
+  'Review the Terms of Service for using the free Age Calculator Pro online tool, including acceptable use, disclaimers, intellectual property, and liability.';
+const pageKeywords =
+  'age calculator terms, age calculator pro terms of service, age calculator legal, terms of use age calculator';
+const canonical = 'https://agecalculatorpro.app/terms-of-service';
+
+const sections = [
+  { id: 'acceptance', title: '1. Acceptance of Terms' },
+  { id: 'service-description', title: '2. Service Description' },
+  { id: 'eligibility', title: '3. Eligibility and User Responsibilities' },
+  { id: 'acceptable-use', title: '4. Acceptable Use' },
+  { id: 'intellectual-property', title: '5. Intellectual Property' },
+  { id: 'data-and-privacy', title: '6. Data and Privacy' },
+  { id: 'availability', title: '7. Service Availability' },
+  { id: 'third-party-services', title: '8. Third-Party Services' },
+  { id: 'disclaimers', title: '9. Disclaimers' },
+  { id: 'liability', title: '10. Limitation of Liability' },
+  { id: 'indemnification', title: '11. Indemnification' },
+  { id: 'termination', title: '12. Suspension and Termination' },
+  { id: 'governing-law', title: '13. Governing Law and Disputes' },
+  { id: 'changes', title: '14. Changes to Terms' },
+  { id: 'contact', title: '15. Contact Information' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Terms of Service</h1>
+        <p>
+          These Terms of Service govern your use of Age Calculator Pro. By accessing or using the service,
+          you agree to these terms.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Effective date: June 23, 2026</span>
+          <span class={styles.badge}>Last reviewed: June 23, 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class={`container ${styles.contentWrap}`}>
+        <aside class={`card ${styles.sideNav}`} aria-label="Terms section navigation">
+          <h2>Contents</h2>
+          <ul>
+            {sections.map((section) => (
+              <li><a href={`#${section.id}`}>{section.title}</a></li>
+            ))}
+          </ul>
+        </aside>
+
+        <article class={`card ${styles.mainContent}`}>
+          <section id="acceptance">
+            <h2>1. Acceptance of Terms</h2>
+            <p>
+              By accessing Age Calculator Pro, you confirm that you have read, understood, and agreed to these Terms of Service
+              and our Privacy Policy. If you do not agree, do not use the service.
+            </p>
+          </section>
+
+          <section id="service-description">
+            <h2>2. Service Description</h2>
+            <p>
+              Age Calculator Pro provides online tools to calculate age, age difference, and related metrics.
+              Features may include exporting, sharing, and additional informational outputs.
+            </p>
+            <p class={styles.callout}>
+              The service is provided for general informational use and does not constitute legal, medical, or financial advice.
+            </p>
+          </section>
+
+          <section id="eligibility">
+            <h2>3. Eligibility and User Responsibilities</h2>
+            <ul>
+              <li>You must use the service in compliance with applicable laws.</li>
+              <li>You are responsible for the accuracy of any data you enter.</li>
+              <li>You must not use the service in ways that disrupt operations or harm other users.</li>
+            </ul>
+          </section>
+
+          <section id="acceptable-use">
+            <h2>4. Acceptable Use</h2>
+            <p>You agree not to:</p>
+            <ul>
+              <li>Attempt unauthorized access to systems, infrastructure, or data.</li>
+              <li>Reverse engineer, probe, or exploit vulnerabilities in the platform.</li>
+              <li>Use automated scraping or high-volume requests that degrade service quality.</li>
+              <li>Use the service for unlawful, abusive, or fraudulent activities.</li>
+            </ul>
+          </section>
+
+          <section id="intellectual-property">
+            <h2>5. Intellectual Property</h2>
+            <p>
+              All software, branding, layouts, text, and visual assets on Age Calculator Pro are owned by or licensed to us,
+              unless otherwise stated. You may use the service for personal or internal business purposes only.
+            </p>
+            <p>
+              Reproduction, redistribution, or commercial resale of service content without permission is prohibited.
+            </p>
+          </section>
+
+          <section id="data-and-privacy">
+            <h2>6. Data and Privacy</h2>
+            <p>
+              Your use of the service is also governed by our Privacy Policy. Where core calculations are performed locally,
+              data may remain in your browser context except for limited operational and security telemetry.
+            </p>
+            <p>
+              <a href="/privacy-policy">Read Privacy Policy</a>
+            </p>
+          </section>
+
+          <section id="availability">
+            <h2>7. Service Availability</h2>
+            <p>
+              We strive for reliable availability but do not guarantee uninterrupted or error-free service.
+              We may modify, pause, or discontinue features at any time for maintenance, security, or product updates.
+            </p>
+          </section>
+
+          <section id="third-party-services">
+            <h2>8. Third-Party Services</h2>
+            <p>
+              The service may rely on third-party providers (such as hosting, analytics, or infrastructure partners).
+              We are not responsible for third-party websites, terms, or practices.
+            </p>
+          </section>
+
+          <section id="disclaimers">
+            <h2>9. Disclaimers</h2>
+            <p>
+              Age Calculator Pro is provided on an "as is" and "as available" basis without warranties of any kind,
+              express or implied, including warranties of merchantability, fitness for a particular purpose,
+              and non-infringement.
+            </p>
+            <ul>
+              <li>Results may vary due to input quality or local date settings.</li>
+              <li>You are responsible for validating outputs before critical use cases.</li>
+            </ul>
+          </section>
+
+          <section id="liability">
+            <h2>10. Limitation of Liability</h2>
+            <p>
+              To the maximum extent permitted by law, Age Calculator Pro and its operators will not be liable for indirect,
+              incidental, special, consequential, or punitive damages, including lost profits, data loss,
+              or business interruption arising from your use of the service.
+            </p>
+          </section>
+
+          <section id="indemnification">
+            <h2>11. Indemnification</h2>
+            <p>
+              You agree to indemnify and hold harmless Age Calculator Pro, its operators, and affiliates from any claims,
+              liabilities, losses, or expenses arising from your misuse of the service or breach of these terms.
+            </p>
+          </section>
+
+          <section id="termination">
+            <h2>12. Suspension and Termination</h2>
+            <p>
+              We may suspend or restrict access to the service if we reasonably believe you have violated these terms,
+              abused the platform, or created security risks.
+            </p>
+          </section>
+
+          <section id="governing-law">
+            <h2>13. Governing Law and Disputes</h2>
+            <p>
+              These terms are governed by applicable laws of the jurisdiction in which the service operator is established,
+              without regard to conflict-of-law principles. Disputes will be addressed through good-faith discussions first,
+              then through competent legal forums where required.
+            </p>
+          </section>
+
+          <section id="changes">
+            <h2>14. Changes to Terms</h2>
+            <p>
+              We may update these Terms of Service periodically. Material changes will be posted on this page with
+              an updated effective date.
+            </p>
+          </section>
+
+          <section id="contact" class={`card ${styles.contactCard}`}>
+            <h2>15. Contact Information</h2>
+            <p>For legal or terms-related inquiries, contact:</p>
+            <div class={styles.contactGrid}>
+              <p>Email: hashcode.dev@gmail.com</p>
+              <p>Subject line: Age Calculator Pro Terms Inquiry</p>
+              <p>Response target: within 30 days where practicable</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

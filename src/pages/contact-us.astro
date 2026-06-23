@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import styles from '../styles/ContactPage.module.css';
+
+const pageTitle = 'Contact Us - Age Calculator Pro | Support & Feedback';
+const pageDescription =
+  'Contact the Age Calculator Pro team by email for support, privacy questions, legal requests, partnership, or product feedback about our age calculator.';
+const pageKeywords =
+  'contact age calculator pro, age calculator support, age calculator feedback, age calculator help, date of birth calculator contact';
+const canonical = 'https://agecalculatorpro.app/contact-us';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>
+          Need help with Age Calculator Pro, have a legal or privacy request, or want to share product feedback?
+          Please contact us directly by email.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class={`container ${styles.grid}`}>
+        <article class={`card ${styles.mainCard}`}>
+          <section>
+            <h2>Contact Email</h2>
+            <p>If you need to connect with us, send an email to:</p>
+            <div class={styles.emailBox}>
+              <a href="mailto:hashcode.dev@gmail.com">hashcode.dev@gmail.com</a>
+            </div>
+          </section>
+
+          <section>
+            <h2>How to Reach the Right Team Faster</h2>
+            <ul class={styles.list}>
+              <li><strong>General Support:</strong> Questions about calculator usage or result exports.</li>
+              <li><strong>Privacy Requests:</strong> Data/privacy rights, policy questions, and related concerns.</li>
+              <li><strong>Legal Requests:</strong> Terms, policy clarifications, or compliance-related communications.</li>
+              <li><strong>Product Feedback:</strong> Suggestions for features, improvements, and usability enhancements.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>What to Include in Your Email</h2>
+            <ul class={styles.list}>
+              <li>Clear subject line (for example: Support, Privacy, Legal, or Feedback).</li>
+              <li>Short description of your request.</li>
+              <li>Relevant context such as device/browser details for technical issues.</li>
+              <li>Any timeline requirements if your request is time-sensitive.</li>
+            </ul>
+          </section>
+        </article>
+
+        <aside class={`card ${styles.sideCard}`}>
+          <h2>Response Information</h2>
+          <p>We review incoming emails and respond as quickly as possible.</p>
+          <div class={styles.badges}>
+            <span class={styles.badge}>Primary Channel: Email</span>
+            <span class={styles.badge}>Address: hashcode.dev@gmail.com</span>
+            <span class={styles.badge}>Typical Response: 1-3 business days</span>
+          </div>
+          <p class={styles.notice}>
+            For privacy or legal matters, include the phrase "Privacy Request" or "Legal Request" in your subject line.
+          </p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

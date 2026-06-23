@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CalculatorApp from '../components/CalculatorApp';
+import FaqAccordion from '../components/FaqAccordion';
+import styles from '../styles/HomePage.module.css';
+
+const pageTitle = 'Age Calculator - Calculate Your Exact Age by Date of Birth Online (Free)';
+const pageDescription =
+	'Free online age calculator by date of birth. Calculate your exact age in years, months, weeks, days, hours, and minutes. Includes age difference, days calculator, and life statistics. Works on web and mobile.';
+const pageKeywords =
+	'age calculator, date of birth calculator, age calculator by date of birth, age calculator online, age calculator google, age calculator formula, age calculator by date of birth free, age calculator app, age calculator nepali, days calculator, jpg to pdf';
+const canonical = 'https://agecalculatorpro.app/';
+
+const faqItems = [
+	{
+		question: 'How is age calculated exactly?',
+		answer:
+			'We compute precise calendar age (years, months, days) and derive totals for weeks, days, hours, and minutes from the exact day difference.',
+	},
+	{
+		question: 'Can I calculate age for future dates?',
+		answer: 'No. Future dates are blocked to keep results mathematically accurate and meaningful.',
+	},
+	{
+		question: 'Is my birthday data stored?',
+		answer: 'No. Inputs are handled client-side and we do not require user registration.',
+	},
+	{
+		question: 'What does age difference do?',
+		answer: 'It compares two birth dates and reports the absolute difference in years, months, and days.',
+	},
+	{
+		question: 'Are time zones considered?',
+		answer: 'Yes. We normalize selected dates to local day boundaries for consistent date arithmetic.',
+	},
+];
+
+const schemas = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		name: 'Age Calculator Pro',
+		url: canonical,
+		logo: `${canonical}favicon.svg`,
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebApplication',
+		name: 'Age Calculator Pro',
+		applicationCategory: 'UtilitiesApplication',
+		operatingSystem: 'Any',
+		url: canonical,
+		description: pageDescription,
+		offers: {
+			'@type': 'Offer',
+			price: '0',
+			priceCurrency: 'USD',
+		},
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: faqItems.map((item) => ({
+			'@type': 'Question',
+			name: item.question,
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: item.answer,
+			},
+		})),
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Home',
+				item: canonical,
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: 'Calculator',
+				item: `${canonical}#calculator`,
+			},
+			{
+				'@type': 'ListItem',
+				position: 3,
+				name: 'FAQ',
+				item: `${canonical}#faq`,
+			},
+		],
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'HowTo',
+		name: 'How to calculate age by date of birth',
+		description:
+			'Use Age Calculator Pro to calculate your exact age from your date of birth in years, months, weeks, days, hours, and minutes.',
+		totalTime: 'PT1M',
+		step: [
+			{
+				'@type': 'HowToStep',
+				name: 'Open the age calculator',
+				text: 'Open Age Calculator Pro in your browser. No registration is required.',
+				url: `${canonical}#calculator`,
+			},
+			{
+				'@type': 'HowToStep',
+				name: 'Enter your date of birth',
+				text: 'Select your date of birth in the Date Of Birth field. Future dates are not allowed.',
+			},
+			{
+				'@type': 'HowToStep',
+				name: 'Choose calculate-at date',
+				text: 'Keep today as the default or pick a custom date to calculate age at any point in time.',
+			},
+			{
+				'@type': 'HowToStep',
+				name: 'Click Calculate Age',
+				text: 'Press Calculate Age to instantly view your exact age in years, months, weeks, days, hours, and minutes.',
+			},
+		],
+	},
+];
+---
+
+<BaseLayout
+	title={pageTitle}
+	description={pageDescription}
+	keywords={pageKeywords}
+	canonical={canonical}
+	schemas={schemas}
+>
+	<Header />
+
+	<main id="home">
+		<section class={styles.hero}>
+			<div class="container">
+				<div class={styles.heroContent}>
+					<h1>
+						<span class={styles.gradientText}>Age Calculator</span> - Calculate Your Exact Age by Date of Birth
+					</h1>
+					<p>
+						A free, fast, and accurate age calculator by date of birth. Discover your exact age in years, months,
+						weeks, days, hours, and minutes with our high-fidelity online age calculation engine.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section id="calculator" class={`section ${styles.calculatorSection}`}>
+			<div class="container">
+				<div class={styles.sectionHead}>
+					<h2>Precision Age Engine</h2>
+					<p>Run exact age and age-difference calculations with exportable reports.</p>
+				</div>
+				<CalculatorApp client:load />
+			</div>
+		</section>
+
+		<section class="section" id="about">
+			<div class="container">
+				<div class={styles.sectionHead}>
+					<h2>Life Statistics</h2>
+					<p>Turn calendar dates into practical metrics for planning, tracking, and insight.</p>
+				</div>
+				<div class={styles.featureGrid}>
+					<article class={`card ${styles.featureCard}`}>
+						<h3>Milestone Tracking</h3>
+						<p>Understand exactly how far you are from your next birthday and key life events.</p>
+					</article>
+					<article class={`card ${styles.featureCard}`}>
+						<h3>Human-readable Totals</h3>
+						<p>View compact totals for weeks, hours, and minutes lived with premium formatting.</p>
+					</article>
+					<article class={`card ${styles.featureCard}`}>
+						<h3>Estimated Biometrics</h3>
+						<p>Get heartbeat and sleep estimates from time-lived totals for quick personal analytics.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div class={styles.sectionHead}>
+					<h2>Why Professional Tools Matter</h2>
+					<p>Precision engineering for everyday life calculations.</p>
+				</div>
+				<div class={styles.featureGrid}>
+					<article class={`card ${styles.featureCard}`}><h3>Fast Results</h3><p>Instant calculations with no loading friction.</p></article>
+					<article class={`card ${styles.featureCard}`}><h3>Atomic Precision</h3><p>Calendar-accurate math for professional-grade reliability.</p></article>
+					<article class={`card ${styles.featureCard}`}><h3>Mobile First</h3><p>Responsive single-column flow with touch-friendly controls.</p></article>
+					<article class={`card ${styles.featureCard}`}><h3>No Registration</h3><p>Use every feature immediately without account creation.</p></article>
+					<article class={`card ${styles.featureCard}`}><h3>Always Free</h3><p>All core capabilities are available at zero cost.</p></article>
+					<article class={`card ${styles.featureCard}`}><h3>Deep Analysis</h3><p>Life metrics and age-difference tools built into one workflow.</p></article>
+				</div>
+			</div>
+		</section>
+
+		<section id="faq" class="section">
+			<div class="container">
+				<div class={styles.sectionHead}>
+					<h2>Frequently Asked Questions</h2>
+					<p>Everything you need to know before running your first calculation.</p>
+				</div>
+				<FaqAccordion client:load />
+			</div>
+		</section>
+
+		<section id="about-tool" class="section">
+			<div class="container">
+				<article class={`card ${styles.seoContent}`}>
+					<h2>About the Age Calculator - Calculate Your Age by Date of Birth Online</h2>
+					<p>
+						The <strong>Age Calculator</strong> by Age Calculator Pro is a free, browser-based <strong>date of birth
+						calculator</strong> that helps you find your exact age instantly. Whether you want a quick result for personal
+						curiosity, school admission forms, retirement planning, government documentation, or insurance applications,
+						this <strong>age calculator by date of birth</strong> gives you a precise breakdown in years, months, weeks,
+						days, hours, and minutes. It is designed to be one of the most reliable <strong>age calculator online</strong>
+						tools available, with a clean interface, calendar-accurate math, and zero registration.
+					</p>
+
+					<h3>How the Age Calculator Formula Works</h3>
+					<p>
+						Our <strong>age calculator formula</strong> uses real calendar arithmetic rather than rough approximations.
+						First, the tool finds the exact difference between your date of birth and the chosen calculate-at date in
+						years, months, and days. From that precise day span, it then derives totals like total weeks, hours, and
+						minutes lived. This is the same method recommended in any reliable <strong>age calculator Google</strong>
+						search result, but executed locally in your browser for instant results. Because the calculations run
+						client-side, your date of birth never leaves your device, making this an extremely private and trustworthy
+						<strong>age calculator by date of birth free</strong> solution.
+					</p>
+
+					<h3>Why Use Our Online Age Calculator</h3>
+					<p>
+						There are many reasons people search for an <strong>age calculator app</strong> or a website-based
+						<strong>date of birth calculator</strong>. Common scenarios include verifying eligibility for jobs and
+						competitive exams, calculating age at a specific past or future date, checking age requirements for visas,
+						and simply tracking birthdays. Age Calculator Pro supports all of these workflows in one place. Beyond the
+						basic result, you also get life statistics such as the weekday you were born, your zodiac sign, days until
+						your next birthday, and estimated totals for heartbeats and sleep over your lifetime.
+					</p>
+
+					<h3>Age Calculator Nepali, Indian, and International Calendar Support</h3>
+					<p>
+						Many users specifically look for an <strong>age calculator Nepali</strong>, Indian, or other regional version.
+						Because our tool uses the standard Gregorian calendar with locale-aware date normalization, it works for users
+						worldwide, including those entering English-formatted dates of birth from Nepal, India, Bangladesh, the United
+						States, the United Kingdom, Canada, Australia, the UAE, and more. The result will always reflect calendar-accurate
+						age with consistent handling of leap years and month-end edge cases.
+					</p>
+
+					<h3>Age Difference Calculator and Days Calculator</h3>
+					<p>
+						In addition to the standard age tool, our platform includes an <strong>age difference</strong> calculator
+						that compares two dates of birth and returns the exact gap in years, months, and days. It is particularly
+						useful for couples, siblings, classmates, sports eligibility checks, and HR teams. The same engine also
+						doubles as a <strong>days calculator</strong>, since you can quickly see the precise number of days between
+						any two dates by treating them as date inputs.
+					</p>
+
+					<h3>Free, Private, and Built for Speed</h3>
+					<p>
+						This is a 100% free <strong>age calculator</strong>. You do not need to download an app, sign up, or share
+						personal information. You can also share results, export them as a PDF, or save them as a PNG image for
+						documentation. While many users also search for unrelated tools like a <strong>jpg to pdf</strong> converter,
+						Age Calculator Pro stays focused on what it does best: delivering the most accurate <strong>age calculator
+						by date of birth</strong> experience on the web. Bookmark this page and use it any time you need a fast,
+						reliable, and privacy-friendly way to calculate age online.
+					</p>
+				</article>
+			</div>
+		</section>
+
+	</main>
+
+	<Footer />
+</BaseLayout>
