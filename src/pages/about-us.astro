@@ -7,8 +7,7 @@ import styles from '../styles/AboutPage.module.css';
 const pageTitle = 'About Us - Age Calculator Pro | Free Age Calculator by Date of Birth';
 const pageDescription =
   'Learn about Age Calculator Pro - the team behind a free, accurate, and private age calculator by date of birth. Our mission, principles, and product standards.';
-const pageKeywords =
-  'about age calculator pro, age calculator team, free age calculator, date of birth calculator, age calculator online, age calculator app';
+const pageKeywords = 'about age calculator pro, editorial team, mission, product principles';
 const canonical = 'https://agecalculatorpro.app/about-us';
 
 const schema = {
@@ -137,6 +136,46 @@ const schema = {
             <li><strong>Iteration:</strong> refine performance, accessibility, and usability based on feedback.</li>
           </ol>
         </article>
+      </div>
+    </section>
+
+    <section class={styles.section}>
+      <div class="container">
+        <div class={styles.sectionHead}>
+          <h2>Editorial Team &amp; Expertise</h2>
+          <p>Our guides and calculator outputs are reviewed by contributors with backgrounds in software engineering and product design.</p>
+        </div>
+        <div class={styles.grid2}>
+          <article class={`card ${styles.cardBody}`}>
+            <h3>Editorial Principles</h3>
+            <p>
+              Every guide we publish is written from first principles, checked against authoritative references such as ISO 8601,
+              the Gregorian calendar specification, and government-form documentation, and reviewed by a second contributor before
+              going live.
+            </p>
+            <ul class={styles.list}>
+              <li>Original research and worked examples rather than paraphrased summaries.</li>
+              <li>Clear separation between factual math and interpretive material (e.g. astrology).</li>
+              <li>Explicit disclaimers where a topic could be mistaken for legal, medical, or financial advice.</li>
+              <li>Named topic areas: age calculation, calendar systems, official-document workflows, everyday reference.</li>
+            </ul>
+          </article>
+
+          <article class={`card ${styles.cardBody}`}>
+            <h3>Contributors</h3>
+            <p>
+              Age Calculator Pro is maintained by a small independent team of software engineers and product designers. We
+              publish under a shared editorial byline ("Age Calculator Pro Editorial Team") rather than individual author pages
+              because most articles are peer-reviewed collaboratively.
+            </p>
+            <ul class={styles.list}>
+              <li>Combined 15+ years of experience in web application development.</li>
+              <li>Background in building user-facing tooling used by non-technical audiences.</li>
+              <li>Independent of any advertiser, affiliate program, or sponsor for editorial content.</li>
+              <li>Reachable for corrections and questions via <a href="/contact-us">Contact Us</a>.</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 

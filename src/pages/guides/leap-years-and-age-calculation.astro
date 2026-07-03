@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import styles from '../../styles/GuidePage.module.css';
+
+const pageTitle = 'Leap Years and Age Calculation: The February 29 Edge Case | Age Calculator Pro';
+const pageDescription =
+  'How leap years affect age calculation, what happens to a February 29 birthday in a non-leap year, and how the Gregorian rule with its 400-year exception actually works.';
+const pageKeywords = 'leap year age, february 29 birthday, gregorian leap year rule, leap year calculator';
+const canonical = 'https://agecalculatorpro.app/guides/leap-years-and-age-calculation';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Leap Years and Age Calculation: The February 29 Edge Case',
+  description: pageDescription,
+  datePublished: '2026-06-23',
+  dateModified: '2026-06-23',
+  author: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro Editorial Team',
+    url: 'https://agecalculatorpro.app/about-us',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro',
+    logo: { '@type': 'ImageObject', url: 'https://agecalculatorpro.app/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Leap Years and Age Calculation: The February 29 Edge Case</h1>
+        <p>
+          A leap-day birthday sounds like a fun quirk. It also happens to be one of the most common places age-calculation code
+          gets things wrong. This guide explains the rules, the edge cases, and how our engine handles them.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Editorial team</span>
+          <span class={styles.badge}>Published June 23, 2026</span>
+          <span class={styles.badge}>6 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article class={`card ${styles.article}`}>
+          <h2>Why leap years exist at all</h2>
+          <p>
+            Earth takes about 365.2422 days to orbit the sun. A 365-day calendar year drifts by roughly a quarter of a day every
+            year, which adds up to a full day every four years. If left alone, the seasons would slowly slide out of sync with
+            the calendar over centuries.
+          </p>
+          <p>
+            The Julian calendar addressed this with a simple rule: add a leap day every four years. This over-corrected slightly,
+            because 365.25 is a hair more than the true orbital period. The Gregorian reform in 1582 refined the rule further:
+          </p>
+
+          <ul>
+            <li>Every year divisible by 4 is a leap year.</li>
+            <li>Except years divisible by 100 - those are not leap years.</li>
+            <li>Except years also divisible by 400 - those <em>are</em> leap years.</li>
+          </ul>
+
+          <p>
+            So 1900 was not a leap year, but 2000 was. And 2100 will not be, even though 2096 and 2104 will. Our calculator follows
+            the Gregorian rule strictly, which is the same convention used by every mainstream operating system and browser.
+          </p>
+
+          <h2>What happens to a February 29 birthday</h2>
+          <p>
+            The tricky question is: if you were born on February 29, when do you celebrate in a non-leap year? Legally, jurisdictions
+            handle this differently.
+          </p>
+
+          <div class={styles.tableWrap}>
+            <table class={styles.table}>
+              <thead>
+                <tr><th>Approach</th><th>Where it is common</th><th>What it does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Celebrate March 1</td><td>UK, Hong Kong, and much of the common-law world</td><td>Age increments on March 1 in non-leap years.</td></tr>
+                <tr><td>Celebrate February 28</td><td>Taiwan, New Zealand (in some contexts)</td><td>Age increments on February 28 in non-leap years.</td></tr>
+                <tr><td>Age only on real leap days</td><td>Cultural convention among some "leaplings"</td><td>Person only ages up every four years - fun trivia, not law.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Our engine picks a consistent, defensible choice: on non-leap years, a February 29 birthday is considered to occur on
+            March 1 for the purpose of the whole-year rollover. This matches the majority common-law convention and gives an answer
+            that is generally acceptable on official forms. If your jurisdiction uses the February 28 convention, subtract one day
+            from your result.
+          </p>
+
+          <h2>How the year count itself is affected</h2>
+          <p>
+            Once whole years are correctly counted, the day count naturally accommodates extra leap days. Suppose you were born on
+            January 1, 2000 - a leap year. By January 1, 2020, you have lived exactly 20 calendar years and 7,305 days. That is
+            365 &times; 20 = 7,300, plus 5 extra days for the leap years in 2000, 2004, 2008, 2012, and 2016. (2020 has not yet
+            added its extra day by January 1.)
+          </p>
+
+          <p>
+            The general rule: over an N-year span, the number of leap days is <em>N / 4 - N / 100 + N / 400</em>, rounded down at
+            each step, and adjusted slightly for how the span aligns with century boundaries. For most personal use, our engine
+            handles this arithmetic for you.
+          </p>
+
+          <h2>Why some homemade calculators get this wrong</h2>
+          <p>
+            A shockingly common bug is calculating age with "days divided by 365". For someone born January 1, 1990, checking their
+            age on January 1, 2026, the true age is exactly 36 years and 0 days. But if a calculator computes 13,149 days &divide; 365,
+            it gets about 36.03 years and rounds down to 36 - correct by luck. Shift the same person to February 28 or March 1
+            in different years and the rounding-luck goes away, and the number of "months remaining" starts to drift.
+          </p>
+
+          <p>
+            The right fix is not "divide by 365.25" - it is calendar decomposition: count whole years, then whole months, then
+            leftover days, using the calendar itself rather than an average. That is what our engine does, and it is why the
+            year-month-day numbers you see match the ones a human reviewer would produce by counting on their fingers.
+          </p>
+
+          <h2>Edge cases worth knowing</h2>
+          <ul>
+            <li>
+              <strong>Born on February 29, calculating age on February 28 of a non-leap year.</strong> Our engine returns the
+              age as of March 1 (i.e., increments the year on March 1). You will effectively see the "not yet had a birthday
+              this year" result on February 28.
+            </li>
+            <li>
+              <strong>Long spans that cross a century.</strong> The 1900/2100 non-leap century years matter for people born in the
+              late 1800s or projections into the late 21st century. Our engine handles the Gregorian rule for all supported browsers.
+            </li>
+            <li>
+              <strong>Historical dates before the Gregorian reform (1582).</strong> Different countries adopted the Gregorian
+              calendar at different times. Our engine treats all dates using the modern Gregorian rule, which is standard for
+              online calculators. For historical research work, consult a specialised source.
+            </li>
+          </ul>
+
+          <h2>Try it yourself</h2>
+          <p>
+            Head to <a href="/#calculator">the calculator</a> and enter a leap-day date of birth (like February 29, 1996). Pick
+            a few different calculate-at dates near the end of February in non-leap years and see how the result rolls over. If
+            you would like the underlying math walked through in more detail, our companion article
+            <a href="/guides/how-age-is-calculated">How Age Is Calculated</a> covers it end-to-end.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class={styles.related}>
+      <div class="container">
+        <div class={styles.relatedGrid}>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>How Age Is Calculated</h3>
+            <p>The core calendar decomposition algorithm, in plain English.</p>
+            <a href="/guides/how-age-is-calculated">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Age for Official Documents</h3>
+            <p>Which age rules matter on passports, school forms, and job applications.</p>
+            <a href="/guides/age-calculation-for-official-documents">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Days Between Dates</h3>
+            <p>Counting exact days between two calendar dates without off-by-one bugs.</p>
+            <a href="/guides/days-between-dates">Read guide -&gt;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

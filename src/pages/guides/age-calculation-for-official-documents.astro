@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import styles from '../../styles/GuidePage.module.css';
+
+const pageTitle = 'Calculating Age for Official Documents: Passports, School, Jobs | Age Calculator Pro';
+const pageDescription =
+  'How age is calculated on passports, school admissions, government exams, and hiring forms. Common eligibility cutoffs and what to double-check before submitting.';
+const pageKeywords = 'age calculation for documents, age for passport, school admission age, exam eligibility age';
+const canonical = 'https://agecalculatorpro.app/guides/age-calculation-for-official-documents';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Calculating Age for Official Documents: Passports, School, and Jobs',
+  description: pageDescription,
+  datePublished: '2026-06-23',
+  dateModified: '2026-06-23',
+  author: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro Editorial Team',
+    url: 'https://agecalculatorpro.app/about-us',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro',
+    logo: { '@type': 'ImageObject', url: 'https://agecalculatorpro.app/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Calculating Age for Official Documents: Passports, School, and Jobs</h1>
+        <p>
+          Age fields on official forms follow surprisingly specific rules. This guide covers the ones that trip people up most:
+          "age as on" dates, cutoff eligibility, and the small mistakes that get applications rejected.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Editorial team</span>
+          <span class={styles.badge}>Published June 23, 2026</span>
+          <span class={styles.badge}>7 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article class={`card ${styles.article}`}>
+          <blockquote>
+            This article is a general reference. Individual programs and jurisdictions may use different rules. Always follow the
+            instructions on the specific form you are filling out, and consult a qualified professional when the outcome matters.
+          </blockquote>
+
+          <h2>What "age as on" actually means</h2>
+          <p>
+            Government exams, school admissions, and job applications frequently specify age in a phrase like
+            <em>"applicant must be 21 years of age as on 1st January 2027"</em>. This wording is precise. It means: on that date,
+            you must have completed 21 full years since your date of birth. If your 21st birthday falls on January 2, 2027, you
+            are not yet 21 "as on" January 1, and you are not eligible - even though you will be within days.
+          </p>
+          <p>
+            Our calculator supports this workflow directly. In the calculate-at date field, enter the reference date (the
+            "as on" date), keep the date-of-birth field as your own, and the tool will report the exact whole years, months,
+            and days you had reached by that date.
+          </p>
+
+          <h2>Minimum age vs maximum age</h2>
+          <p>
+            Two rules commonly appear together, and reading them correctly matters.
+          </p>
+          <ul>
+            <li>
+              <strong>Minimum age (e.g. "at least 18")</strong> - you must have completed that many years by the reference date.
+              Whole years, not fractional. Someone who is 17 years and 364 days is <em>not</em> 18.
+            </li>
+            <li>
+              <strong>Maximum age (e.g. "not exceeding 30")</strong> - the exact interpretation varies. Some jurisdictions treat
+              "not exceeding 30" as "must not have completed 31 years", meaning your 30-year period runs from your 30th birthday
+              through the day before your 31st. Others treat it as "must not have crossed the 30th birthday". Always read the
+              rule notes attached to the specific form.
+            </li>
+          </ul>
+
+          <h2>Common upper-age relaxations</h2>
+          <p>
+            Many public-sector recruitment notices include age relaxation - additional years granted to certain categories of
+            applicants (for example, service veterans, persons with disabilities, or specific socio-economic groups). Relaxation
+            is usually additive to the base upper age. If the base upper age is 30 and your category has a 5-year relaxation,
+            the effective upper age for you is 35 as on the reference date.
+          </p>
+          <p>
+            When you use the calculator to check eligibility with a relaxation, either add the relaxation years to the maximum
+            or subtract them from your calculated age when checking against the cap. The math is straightforward once you know
+            which direction the relaxation applies.
+          </p>
+
+          <h2>Ages for passports and identity documents</h2>
+          <p>
+            Passports typically require age as of the application-processing date, not the date of intended travel. That means
+            you use your current age, not the age you will be at the trip. However, passports for minors often have shorter
+            validity periods (five years vs ten in many jurisdictions), so a child's age on the day of application affects the
+            length of validity, not merely the fee.
+          </p>
+          <p>
+            Some countries also require a parent's signature until a specific age (often 16 or 18). Whether that age is
+            interpreted as "on the day of application" or "on the day of issue" is jurisdiction-specific and should be checked
+            in your local rules.
+          </p>
+
+          <h2>School and college admission ages</h2>
+          <p>
+            School systems commonly specify a cutoff birthdate for admission to a grade or class. A rule might read
+            <em>"the child must be 5 years old as on 30th September of the admission year"</em>. That single sentence is a
+            complete rule: pick 30 September as the "as on" date, run it through the calculator alongside the child's date of
+            birth, and read the result.
+          </p>
+          <p>
+            Where families sometimes run into trouble is when the birthday falls a few days after the cutoff. Some school
+            boards allow a limited relaxation with additional documentation; others do not. If your child's birthday is close
+            to the cutoff, contact the school before starting the application.
+          </p>
+
+          <h2>Retirement age and pension calculations</h2>
+          <p>
+            Pension programs typically define eligibility around a specific birthday - for example, "full benefits at age 65".
+            Because pension amounts often depend on the exact date benefits begin, the age calculation feeds into a downstream
+            money calculation. In this context, using a calendar-accurate engine (not a "divide by 365" approximation) matters,
+            because a few days one way or the other can shift the benefit start date across a pay period.
+          </p>
+
+          <h2>Insurance and medical forms</h2>
+          <p>
+            Life-insurance underwriting sometimes uses <strong>age nearest birthday</strong> instead of completed years. For
+            example, someone whose next birthday is within six months may be assigned the higher of the two ages for pricing.
+            This is a specialised convention. Always check the exact instruction on the insurance form and, if unsure, use the
+            calendar-accurate calculation from the calculator as your baseline before applying any special rule.
+          </p>
+
+          <h2>Practical checklist before submission</h2>
+          <ul>
+            <li>Confirm the exact "as on" date the form is asking about.</li>
+            <li>Enter the date of birth exactly as written on your birth certificate or national ID.</li>
+            <li>Double-check the year - the most common data-entry mistake is a one-year typo.</li>
+            <li>If eligibility hinges on a boundary day, run the calculator with both the day before and the day of, and see if the whole-year answer changes.</li>
+            <li>For minors, make sure the person calculating the age is using the correct "as on" convention.</li>
+          </ul>
+
+          <h2>Using the tool for this</h2>
+          <p>
+            Head to <a href="/#calculator">the calculator</a>. Enter the date of birth in the first field and the reference date
+            (the "as on" date) in the Calculate At Date field. The years-months-days breakdown is what most official forms
+            expect. If you need to double-check the calendar day count between two reference dates, use the age-difference tab
+            or read our companion guide on <a href="/guides/days-between-dates">days between dates</a>.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class={styles.related}>
+      <div class="container">
+        <div class={styles.relatedGrid}>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>How Age Is Calculated</h3>
+            <p>The step-by-step algorithm behind the calculator.</p>
+            <a href="/guides/how-age-is-calculated">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Leap Years and Age</h3>
+            <p>February 29 birthdays and other leap-year edge cases.</p>
+            <a href="/guides/leap-years-and-age-calculation">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Days Between Dates</h3>
+            <p>Counting exact days between two calendar dates.</p>
+            <a href="/guides/days-between-dates">Read guide -&gt;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

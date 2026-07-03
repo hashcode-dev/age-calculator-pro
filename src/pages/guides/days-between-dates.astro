@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import styles from '../../styles/GuidePage.module.css';
+
+const pageTitle = 'Days Between Two Dates: A Practical Guide with Examples | Age Calculator Pro';
+const pageDescription =
+  'How to count the exact number of days between two dates, why inclusive vs exclusive endpoints matter, and where the calculation is used in real life.';
+const pageKeywords = 'days between dates, calculate days between two dates, day counter, inclusive dates';
+const canonical = 'https://agecalculatorpro.app/guides/days-between-dates';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Days Between Two Dates: A Practical Guide with Examples',
+  description: pageDescription,
+  datePublished: '2026-06-23',
+  dateModified: '2026-06-23',
+  author: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro Editorial Team',
+    url: 'https://agecalculatorpro.app/about-us',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro',
+    logo: { '@type': 'ImageObject', url: 'https://agecalculatorpro.app/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Days Between Two Dates: A Practical Guide with Examples</h1>
+        <p>
+          Counting the days between two calendar dates sounds trivial. In practice, hotel bookings, contract periods, project
+          plans, and legal filings each define "days between" slightly differently. This guide walks through the conventions.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Editorial team</span>
+          <span class={styles.badge}>Published June 23, 2026</span>
+          <span class={styles.badge}>5 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article class={`card ${styles.article}`}>
+          <h2>The two conventions</h2>
+          <p>
+            When you ask "how many days between June 1 and June 4?", there are two defensible answers depending on how you treat
+            the endpoints.
+          </p>
+          <ul>
+            <li><strong>Exclusive of both ends (the "difference" answer)</strong> - June 1 to June 4 is 3 days apart. This is what a
+              date-subtraction operation returns and what our calculator uses.</li>
+            <li><strong>Inclusive of both ends (the "counting" answer)</strong> - June 1 to June 4, counting both, is 4 days. This
+              is what hotels and rental agreements often use when they say "your stay is 4 days".</li>
+          </ul>
+          <p>
+            Which one is correct depends on the question. Neither is universally right - they answer different things.
+          </p>
+
+          <h2>Where each convention shows up</h2>
+          <div class={styles.tableWrap}>
+            <table class={styles.table}>
+              <thead>
+                <tr><th>Context</th><th>Typical convention</th><th>Why</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Age calculation</td><td>Exclusive (difference)</td><td>You have lived through the days between the two calendars, not the birthday itself twice.</td></tr>
+                <tr><td>Hotel stays</td><td>Inclusive nights</td><td>A "3-night" stay checks in on day 1 and checks out on day 4 - three nights slept.</td></tr>
+                <tr><td>Legal notice periods</td><td>Varies - read the statute</td><td>Some jurisdictions include the day the notice is served, others do not.</td></tr>
+                <tr><td>Project deadlines</td><td>Usually exclusive of start day</td><td>"You have 30 days to respond" typically means 30 clear days after today.</td></tr>
+                <tr><td>Loan interest</td><td>Depends on the contract</td><td>Some loans use "actual days" between dates; others use a 360-day year convention.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Worked examples</h2>
+          <h3>Trip planning</h3>
+          <p>
+            Suppose you are flying out on August 12 and returning on August 20. If you ask "how long is the trip?", most people
+            answer 8 days (August 20 minus August 12), and that is the exclusive convention. But if you count the days you will
+            be away (both endpoints), you get 9. Airlines, tour operators, and travel insurance policies each use one or the other -
+            check the fine print.
+          </p>
+
+          <h3>Contract notice</h3>
+          <p>
+            If a contract says "either party may terminate on 30 days written notice", and notice is served on May 5, the
+            termination date is not automatically June 4. Depending on jurisdiction, the notice period may exclude the day of
+            service, in which case day 1 is May 6 and termination is June 5. When timing is important, ask a lawyer - or at
+            least read the definition of "notice period" in the contract's interpretation section.
+          </p>
+
+          <h3>Simple age gap</h3>
+          <p>
+            When our calculator says two dates are "3 days apart", it uses the exclusive convention: it counts the transitions
+            from midnight to midnight. That is the same convention every mainstream operating system uses when subtracting one
+            date from another.
+          </p>
+
+          <h2>How to compute it in your head</h2>
+          <p>
+            For dates within the same month: subtract the day numbers.
+          </p>
+          <ul>
+            <li>June 10 to June 25 = 25 - 10 = 15 days.</li>
+          </ul>
+          <p>
+            For dates across two months: count the days remaining in the first month, plus the day number of the second.
+          </p>
+          <ul>
+            <li>June 25 to July 4 = (30 - 25) + 4 = 5 + 4 = 9 days.</li>
+          </ul>
+          <p>
+            For anything longer or across leap years, it is faster to use the calculator.
+          </p>
+
+          <h2>Using the age-difference tab</h2>
+          <p>
+            The age-difference tab on <a href="/#calculator">the calculator</a> doubles as a days-between calculator. Enter the
+            two dates (they do not have to be dates of birth), and the result shows the exact number of years, months, and days
+            between them. If you want just the total day count, multiply the year and month spans out - or read the raw day
+            difference in the exports.
+          </p>
+
+          <h2>Common bugs to avoid</h2>
+          <ul>
+            <li><strong>Off-by-one from time zones.</strong> If one date is stored as a timestamp in UTC and the other as a local
+              calendar date, you can lose or gain a day. Always compare dates as calendar dates, not timestamps.</li>
+            <li><strong>Off-by-one from inclusive vs exclusive counting.</strong> Decide up-front which convention the question is
+              asking about.</li>
+            <li><strong>Approximating "30 days" as a month.</strong> Some months are 28, 29, 30, or 31 days. If precision matters,
+              count actual days.</li>
+          </ul>
+
+          <h2>Related reading</h2>
+          <p>
+            For a deeper look at the year-month-day math involved in age calculation, see
+            <a href="/guides/how-age-is-calculated">How Age Is Calculated</a>. For the leap-year rules that quietly affect long
+            spans, see <a href="/guides/leap-years-and-age-calculation">Leap Years and Age Calculation</a>.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class={styles.related}>
+      <div class="container">
+        <div class={styles.relatedGrid}>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>How Age Is Calculated</h3>
+            <p>The full calendar-arithmetic algorithm.</p>
+            <a href="/guides/how-age-is-calculated">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Leap Years and Age</h3>
+            <p>How our engine handles February 29 and long multi-decade spans.</p>
+            <a href="/guides/leap-years-and-age-calculation">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Age for Official Documents</h3>
+            <p>Passport, school, and job-form conventions worth double-checking.</p>
+            <a href="/guides/age-calculation-for-official-documents">Read guide -&gt;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

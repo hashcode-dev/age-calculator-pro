@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import styles from '../../styles/GuidePage.module.css';
+
+const pageTitle = 'Zodiac Signs by Date of Birth: A Reference Table and Notes | Age Calculator Pro';
+const pageDescription =
+  'The date ranges for each Western zodiac sign, cusp-day nuances, and a brief note on what astrology is and is not. A reference guide, not a horoscope.';
+const pageKeywords = 'zodiac signs by date of birth, zodiac date ranges, astrology cusp days, star signs';
+const canonical = 'https://agecalculatorpro.app/guides/zodiac-signs-by-date-of-birth';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Zodiac Signs by Date of Birth: A Reference Table and Notes',
+  description: pageDescription,
+  datePublished: '2026-06-23',
+  dateModified: '2026-06-23',
+  author: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro Editorial Team',
+    url: 'https://agecalculatorpro.app/about-us',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro',
+    logo: { '@type': 'ImageObject', url: 'https://agecalculatorpro.app/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+};
+
+const signs = [
+  { name: 'Capricorn', range: 'December 22 - January 19', element: 'Earth' },
+  { name: 'Aquarius', range: 'January 20 - February 18', element: 'Air' },
+  { name: 'Pisces', range: 'February 19 - March 20', element: 'Water' },
+  { name: 'Aries', range: 'March 21 - April 19', element: 'Fire' },
+  { name: 'Taurus', range: 'April 20 - May 20', element: 'Earth' },
+  { name: 'Gemini', range: 'May 21 - June 20', element: 'Air' },
+  { name: 'Cancer', range: 'June 21 - July 22', element: 'Water' },
+  { name: 'Leo', range: 'July 23 - August 22', element: 'Fire' },
+  { name: 'Virgo', range: 'August 23 - September 22', element: 'Earth' },
+  { name: 'Libra', range: 'September 23 - October 22', element: 'Air' },
+  { name: 'Scorpio', range: 'October 23 - November 21', element: 'Water' },
+  { name: 'Sagittarius', range: 'November 22 - December 21', element: 'Fire' },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Zodiac Signs by Date of Birth: A Reference Table and Notes</h1>
+        <p>
+          This is a plain reference for the twelve Western zodiac signs, their date ranges, elements, and the "cusp day" nuance
+          that trips people up. It is a cultural reference, not a horoscope - see the note at the end for the science context.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Editorial team</span>
+          <span class={styles.badge}>Published June 23, 2026</span>
+          <span class={styles.badge}>5 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article class={`card ${styles.article}`}>
+          <h2>The twelve signs at a glance</h2>
+          <p>
+            Western tropical astrology divides the year into twelve roughly month-long segments. Each segment is called a sign
+            and is grouped into one of four classical elements (Fire, Earth, Air, Water). The table below is the widely accepted
+            reference used by most English-language publications.
+          </p>
+
+          <div class={styles.tableWrap}>
+            <table class={styles.table}>
+              <thead>
+                <tr><th>Sign</th><th>Date range</th><th>Element</th></tr>
+              </thead>
+              <tbody>
+                {signs.map((sign) => (
+                  <tr><td>{sign.name}</td><td>{sign.range}</td><td>{sign.element}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Why the exact date can shift by a day</h2>
+          <p>
+            You may notice that different sources give slightly different starting dates for a sign - Capricorn as December 21 vs
+            December 22, or Aquarius as January 19 vs January 20. This is not a mistake. The tropical zodiac is anchored to the
+            sun's position relative to Earth's equinoxes and solstices, and those points shift by a few hours from year to year.
+            Some publications use the astronomical instant of sign change; others use a fixed date convention for simplicity.
+          </p>
+          <p>
+            If you were born on a "cusp day" - the boundary between two signs - the actual sign depends on the exact time and
+            timezone of your birth. Our calculator uses the standard published date ranges above, which are accurate for the vast
+            majority of birthdays.
+          </p>
+
+          <h2>Sun sign vs the rest of the chart</h2>
+          <p>
+            The sign you get from a date-of-birth lookup is your <strong>sun sign</strong>. In traditional astrology, a full birth
+            chart also includes a moon sign, a rising sign (ascendant), and placements for planets like Mercury, Venus, and Mars.
+            None of these can be computed from date alone - the moon and rising signs require your birth time and location, and
+            planetary positions require an ephemeris.
+          </p>
+          <p>
+            When people share their "big three" (sun, moon, rising), the sun sign is the only one that a date-of-birth alone can
+            reveal. Everything else needs additional inputs.
+          </p>
+
+          <h2>Western vs Vedic (sidereal) zodiac</h2>
+          <p>
+            The table above is <strong>tropical</strong>, meaning anchored to Earth's seasons. In classical Indian astrology
+            (Jyotish), a <strong>sidereal</strong> zodiac is used, which is anchored to the actual positions of the constellations.
+            Because the constellations have drifted relative to the equinoxes over centuries (a phenomenon called precession), the
+            sidereal date ranges are offset by roughly 23-24 degrees - about three to four weeks. Many people who identify as one
+            sign under Western astrology fall into the previous sign under Vedic astrology.
+          </p>
+
+          <h2>A quick note on interpretation</h2>
+          <p>
+            Zodiac signs are a cultural framework with long history and continued popularity. Multiple peer-reviewed studies have
+            examined whether astrology predicts personality or life outcomes better than chance and have not found evidence that
+            it does. Astrology, in short, is not a science - it is a symbolic system that many people find meaningful for
+            reflection, self-narrative, or entertainment.
+          </p>
+          <p>
+            We include the sun sign in our calculator's life-statistics section because it is a widely searched piece of
+            information tied to a date of birth. We do not include predictions about your future.
+          </p>
+
+          <h2>How to look up your sign</h2>
+          <p>
+            The fastest way is to run your date of birth through <a href="/#calculator">the calculator</a>. The result card includes
+            your zodiac sign alongside the exact age breakdown. If you were born on a boundary day and the result surprises you,
+            check the table above and consider that some publications use slightly different boundary conventions.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class={styles.related}>
+      <div class="container">
+        <div class={styles.relatedGrid}>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>How Age Is Calculated</h3>
+            <p>The math behind years, months, and days from a date of birth.</p>
+            <a href="/guides/how-age-is-calculated">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Days Between Dates</h3>
+            <p>Counting the exact number of days between any two calendar dates.</p>
+            <a href="/guides/days-between-dates">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Age for Official Documents</h3>
+            <p>Which age rules apply on passports, school forms, and job applications.</p>
+            <a href="/guides/age-calculation-for-official-documents">Read guide -&gt;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

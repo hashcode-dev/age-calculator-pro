@@ -1,4 +1,19 @@
+# robots.txt for Age Calculator Pro
+# All content is publicly accessible. Crawlers are welcome.
+
 User-agent: *
+Allow: /
+
+# Explicitly allow the AdSense fetcher (used for ad crawling)
+User-agent: Mediapartners-Google
+Allow: /
+
+# Explicitly allow AdsBot (used for landing-page quality checks)
+User-agent: AdsBot-Google
+Allow: /
+
+# Explicitly allow the general Google crawler
+User-agent: Googlebot
 Allow: /
 
 Sitemap: https://agecalculatorpro.app/sitemap.xml

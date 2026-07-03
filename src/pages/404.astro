@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import styles from '../styles/PolicyPage.module.css';
+
+const pageTitle = '404 - Page Not Found | Age Calculator Pro';
+const pageDescription =
+  'The page you are looking for could not be found. Use the links below to return to the Age Calculator Pro home page or browse our guides.';
+const pageKeywords = 'page not found, 404';
+const canonical = 'https://agecalculatorpro.app/404';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>404 - Page Not Found</h1>
+        <p>
+          The page you were looking for does not exist, has been moved, or the link you followed may be broken. Nothing was
+          lost - just try one of the destinations below.
+        </p>
+        <div class={styles.metaRow}>
+          <a class={styles.badge} href="/">Home &amp; Calculator</a>
+          <a class={styles.badge} href="/guides">Guides</a>
+          <a class={styles.badge} href="/about-us">About Us</a>
+          <a class={styles.badge} href="/contact-us">Contact</a>
+          <a class={styles.badge} href="/privacy-policy">Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class={`container ${styles.contentWrap}`}>
+        <article class={`card ${styles.mainContent}`}>
+          <section>
+            <h2>Popular pages</h2>
+            <ul>
+              <li><a href="/">Age calculator - calculate your exact age by date of birth</a></li>
+              <li><a href="/guides/how-age-is-calculated">Guide: How age is calculated</a></li>
+              <li><a href="/guides/leap-years-and-age-calculation">Guide: Leap years and age calculation</a></li>
+              <li><a href="/guides/age-calculation-for-official-documents">Guide: Age for official documents</a></li>
+              <li><a href="/guides/zodiac-signs-by-date-of-birth">Guide: Zodiac signs by date of birth</a></li>
+              <li><a href="/guides/days-between-dates">Guide: Days between two dates</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Still cannot find what you need?</h2>
+            <p>
+              Please <a href="/contact-us">contact us</a> and mention the URL you were trying to reach. We check reports and fix
+              broken links.
+            </p>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import styles from '../styles/PolicyPage.module.css';
+
+const pageTitle = 'Cookie Policy - Age Calculator Pro';
+const pageDescription =
+  'How Age Calculator Pro uses cookies and similar storage, including essential storage, analytics, and third-party advertising cookies from Google AdSense and its partners.';
+const pageKeywords = 'cookie policy, age calculator cookies, google adsense cookies, tracking, consent';
+const canonical = 'https://agecalculatorpro.app/cookie-policy';
+
+const sections = [
+  { id: 'overview', title: '1. Overview' },
+  { id: 'what-are-cookies', title: '2. What Cookies Are' },
+  { id: 'types-we-use', title: '3. Cookies and Storage We Use' },
+  { id: 'third-party', title: '4. Third-Party Cookies (Advertising)' },
+  { id: 'legal-basis', title: '5. Legal Basis and Consent' },
+  { id: 'manage', title: '6. How to Manage Cookies' },
+  { id: 'do-not-track', title: '7. Do Not Track and Global Privacy Control' },
+  { id: 'changes', title: '8. Changes to This Policy' },
+  { id: 'contact', title: '9. Contact' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Cookie Policy</h1>
+        <p>
+          This Cookie Policy explains how Age Calculator Pro uses cookies and similar browser-storage technologies, including
+          storage placed by our third-party advertising partners.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Effective date: June 23, 2026</span>
+          <span class={styles.badge}>Last reviewed: June 23, 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class={`container ${styles.contentWrap}`}>
+        <aside class={`card ${styles.sideNav}`} aria-label="Cookie policy section navigation">
+          <h2>Contents</h2>
+          <ul>
+            {sections.map((section) => (
+              <li><a href={`#${section.id}`}>{section.title}</a></li>
+            ))}
+          </ul>
+        </aside>
+
+        <article class={`card ${styles.mainContent}`}>
+          <section id="overview">
+            <h2>1. Overview</h2>
+            <p>
+              Age Calculator Pro uses a small amount of browser storage to make the site work and to help us understand how it is
+              used. This page explains what we store, why, who can read it, and how you can control it. It should be read
+              alongside our <a href="/privacy-policy">Privacy Policy</a>.
+            </p>
+          </section>
+
+          <section id="what-are-cookies">
+            <h2>2. What Cookies Are</h2>
+            <p>
+              Cookies are small text files that a website places on your device so that it can remember information across page
+              loads or visits. Similar technologies include localStorage, sessionStorage, and pixel-based tracking. Throughout
+              this policy we use the word "cookies" as shorthand for all of these.
+            </p>
+          </section>
+
+          <section id="types-we-use">
+            <h2>3. Cookies and Storage We Use</h2>
+            <p>
+              We aim to keep first-party storage minimal. The categories we currently use are:
+            </p>
+            <ul>
+              <li>
+                <strong>Essential storage</strong> - a small localStorage entry (<code>acp-theme</code>) remembers whether you
+                selected light, dark, or system theme so the site does not flicker on the next visit. This does not identify you.
+              </li>
+              <li>
+                <strong>Consent storage</strong> - a localStorage entry (<code>acp-consent</code>) records that you have seen and
+                dismissed the cookie notice, so we do not show it every time.
+              </li>
+              <li>
+                <strong>Analytics (aggregate)</strong> - if enabled, we may use privacy-friendly analytics to understand aggregate
+                traffic and performance trends. We do not use analytics data to build advertising profiles of individual visitors.
+              </li>
+            </ul>
+          </section>
+
+          <section id="third-party">
+            <h2>4. Third-Party Cookies (Advertising)</h2>
+            <p>
+              To keep the calculator free, Age Calculator Pro may display advertising served by third-party ad networks such as
+              Google AdSense and its approved partners. These networks may set their own cookies or read existing ones on your
+              device in order to:
+            </p>
+            <ul>
+              <li>Deliver ads that are more relevant to you based on your browsing activity.</li>
+              <li>Measure ad delivery and performance (impressions, clicks, viewability).</li>
+              <li>Prevent the same ad from being shown to you too often (frequency capping).</li>
+              <li>Detect and prevent fraudulent or invalid ad traffic.</li>
+            </ul>
+            <p>
+              Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of advertising cookies
+              enables it and its partners to serve ads to users based on their visit to this site and/or other sites on the
+              Internet. You can opt out of personalized advertising by visiting
+              <a href="https://www.google.com/settings/ads" rel="nofollow noopener">Google Ads Settings</a> or
+              <a href="https://www.aboutads.info/" rel="nofollow noopener">aboutads.info</a> (US),
+              <a href="https://www.youronlinechoices.eu/" rel="nofollow noopener">Your Online Choices</a> (EU/UK), or
+              <a href="https://youradchoices.ca/" rel="nofollow noopener">YourAdChoices</a> (Canada).
+            </p>
+            <p>
+              We do not control the specific cookies set by third-party ad networks and cannot list them exhaustively. For the
+              current list, refer to the ad network's own cookie disclosures, including the
+              <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener">Google technologies and partner sites</a>
+              page.
+            </p>
+          </section>
+
+          <section id="legal-basis">
+            <h2>5. Legal Basis and Consent</h2>
+            <p>
+              Where required by law (for example under the EU/UK GDPR and ePrivacy rules, or under the California Consumer
+              Privacy Act), we rely on the following legal bases:
+            </p>
+            <ul>
+              <li>Essential and consent-storage cookies are used on the basis of legitimate interest, because they are strictly necessary to operate the site.</li>
+              <li>Analytics and advertising cookies are used on the basis of your consent where consent is legally required.</li>
+              <li>You can change your consent choices at any time by clearing your browser's storage for this site, which will cause the consent banner to appear again on your next visit.</li>
+            </ul>
+          </section>
+
+          <section id="manage">
+            <h2>6. How to Manage Cookies</h2>
+            <p>
+              You can manage or delete cookies directly in your browser. Most browsers let you:
+            </p>
+            <ul>
+              <li>View the cookies currently stored on your device.</li>
+              <li>Delete some or all cookies.</li>
+              <li>Block third-party cookies by default.</li>
+              <li>Open a private/incognito window that does not persist cookies after closing.</li>
+            </ul>
+            <p>
+              Popular browser help pages:
+              <a href="https://support.google.com/chrome/answer/95647" rel="nofollow noopener">Chrome</a>,
+              <a href="https://support.mozilla.org/kb/cookies-information-websites-store-on-your-computer" rel="nofollow noopener">Firefox</a>,
+              <a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" rel="nofollow noopener">Safari</a>,
+              <a href="https://support.microsoft.com/microsoft-edge" rel="nofollow noopener">Edge</a>.
+            </p>
+            <p>
+              Blocking all cookies may cause parts of the site to look or behave slightly differently, but core calculator
+              functionality will continue to work because it does not depend on cookies.
+            </p>
+          </section>
+
+          <section id="do-not-track">
+            <h2>7. Do Not Track and Global Privacy Control</h2>
+            <p>
+              Some browsers send a "Do Not Track" (DNT) or "Global Privacy Control" (GPC) signal. Because there is no single
+              industry standard for how sites should respond to DNT, we do not attempt to interpret it uniquely. We do honour
+              Global Privacy Control signals where legally required, including as an opt-out signal for the sale or sharing of
+              personal information under applicable US state privacy laws.
+            </p>
+          </section>
+
+          <section id="changes">
+            <h2>8. Changes to This Policy</h2>
+            <p>
+              We may update this Cookie Policy from time to time. Material updates will be reflected by revising the effective
+              date at the top of the page.
+            </p>
+          </section>
+
+          <section id="contact" class={`card ${styles.contactCard}`}>
+            <h2>9. Contact</h2>
+            <p>If you have questions about this Cookie Policy, please contact:</p>
+            <div class={styles.contactGrid}>
+              <p>Email: hashcode.dev@gmail.com</p>
+              <p>Subject line: Age Calculator Pro Cookie Policy Inquiry</p>
+              <p>Response target: within 30 days where legally required</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

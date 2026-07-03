@@ -14,7 +14,7 @@ const {
   title,
   description,
   canonical,
-  keywords = 'age calculator, date of birth calculator, age calculator by date of birth, age calculator online, age calculator google, age calculator formula, age calculator by date of birth free, age calculator app, age calculator nepali, days calculator, jpg to pdf',
+  keywords = 'age calculator, date of birth calculator, age calculator by date of birth, days calculator, age difference calculator',
   ogType = 'website',
   schemas = [],
 } = Astro.props;
@@ -91,5 +91,136 @@ const ogImage = `${siteUrl}/og-logo.svg`;
   </head>
   <body>
     <slot />
+
+    <div id="acp-cookie-banner" role="dialog" aria-live="polite" aria-labelledby="acp-cookie-banner-title" hidden>
+      <div class="acp-cookie-banner__inner">
+        <div class="acp-cookie-banner__text">
+          <p id="acp-cookie-banner-title" class="acp-cookie-banner__title">We use cookies</p>
+          <p class="acp-cookie-banner__body">
+            This site uses essential storage to remember your theme, aggregated analytics to understand traffic, and may load
+            third-party advertising cookies (including Google AdSense) to keep the calculator free. See our
+            <a href="/cookie-policy">Cookie Policy</a> and <a href="/privacy-policy">Privacy Policy</a> for details.
+          </p>
+        </div>
+        <div class="acp-cookie-banner__actions">
+          <button type="button" class="acp-cookie-banner__btn acp-cookie-banner__btn--secondary" data-consent="decline">
+            Decline non-essential
+          </button>
+          <button type="button" class="acp-cookie-banner__btn acp-cookie-banner__btn--primary" data-consent="accept">
+            Accept all
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      #acp-cookie-banner {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        z-index: 100;
+        background: var(--color-surface);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+        border-radius: 14px;
+        box-shadow: 0 12px 40px rgba(2, 6, 23, 0.18);
+        padding: 16px 18px;
+      }
+
+      .acp-cookie-banner__inner {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+      }
+
+      .acp-cookie-banner__text {
+        flex: 1 1 320px;
+        min-width: 260px;
+      }
+
+      .acp-cookie-banner__title {
+        font-weight: 700;
+        font-size: 14px;
+        margin: 0 0 4px;
+      }
+
+      .acp-cookie-banner__body {
+        font-size: 13px;
+        color: var(--color-muted);
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      .acp-cookie-banner__body a {
+        color: var(--color-primary);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .acp-cookie-banner__actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .acp-cookie-banner__btn {
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+
+      .acp-cookie-banner__btn--primary {
+        background: var(--gradient-primary);
+        color: #fff;
+      }
+
+      .acp-cookie-banner__btn--secondary {
+        background: var(--color-surface);
+        color: var(--color-text);
+        border-color: var(--color-border);
+      }
+
+      @media (max-width: 640px) {
+        .acp-cookie-banner__actions {
+          width: 100%;
+          justify-content: flex-end;
+        }
+      }
+    </style>
+
+    <script is:inline>
+      (() => {
+        const banner = document.getElementById('acp-cookie-banner');
+        if (!banner) return;
+        try {
+          const stored = localStorage.getItem('acp-consent');
+          if (!stored) {
+            banner.hidden = false;
+          }
+        } catch (err) {
+          banner.hidden = false;
+        }
+        banner.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const choice = target.getAttribute('data-consent');
+          if (!choice) return;
+          try {
+            localStorage.setItem('acp-consent', choice);
+          } catch (err) {
+            /* storage may be blocked; hiding the banner without persistence is still fine */
+          }
+          banner.hidden = true;
+        });
+      })();
+    </script>
   </body>
 </html>

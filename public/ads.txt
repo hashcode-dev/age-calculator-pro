@@ -1,0 +1,11 @@
+# ads.txt for Age Calculator Pro
+# https://iabtechlab.com/ads-txt/
+#
+# After AdSense approval, replace the line below with the publisher entry
+# provided in your Google AdSense dashboard, for example:
+#
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+#
+# This placeholder file exists so that the URL /ads.txt returns 200 rather
+# than 404 while the site is being reviewed. It contains no active
+# authorization records and grants no permission to any advertising vendor.

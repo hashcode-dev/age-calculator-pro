@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import styles from '../../styles/GuidePage.module.css';
+
+const pageTitle = 'How Age Is Calculated: The Math Behind Years, Months, and Days | Age Calculator Pro';
+const pageDescription =
+  'A plain-English guide to how age is calculated from a date of birth. Learn why simply subtracting years fails, why 365.25 is wrong at month-ends, and how our engine handles it.';
+const pageKeywords = 'how age is calculated, age formula, calendar age math, years months days from date of birth';
+const canonical = 'https://agecalculatorpro.app/guides/how-age-is-calculated';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'How Age Is Calculated: The Math Behind Years, Months, and Days',
+  description: pageDescription,
+  datePublished: '2026-06-23',
+  dateModified: '2026-06-23',
+  author: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro Editorial Team',
+    url: 'https://agecalculatorpro.app/about-us',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Age Calculator Pro',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://agecalculatorpro.app/favicon.svg',
+    },
+  },
+  mainEntityOfPage: canonical,
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>How Age Is Calculated: The Math Behind Years, Months, and Days</h1>
+        <p>
+          Most people can rattle off their age in years, but the moment you need it in years, months, and days - for a passport form,
+          a school admission, a legal document - the calculation is trickier than it looks. This guide walks through the actual math.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Editorial team</span>
+          <span class={styles.badge}>Published June 23, 2026</span>
+          <span class={styles.badge}>7 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article class={`card ${styles.article}`}>
+          <p>
+            When people ask "how old am I?", the answer is usually a whole number of years. But the moment the question becomes
+            "how old was I on July 1, 2019?" or "what is my age in years, months, and days for this form?", the mental math gets
+            messy. This is because calendar time is not a smooth ruler - months have different lengths, February gets an extra day
+            every four years (with exceptions), and years do not divide evenly into weeks or hours.
+          </p>
+
+          <h2>The naive approach: subtract the years</h2>
+          <p>
+            The most common first attempt is to subtract the year of birth from the current year. If you were born in 1995 and it
+            is 2026, that gives 31. But you might not have had your 2026 birthday yet, so you could still be 30. This is why every
+            official age formula includes a check: has the birthday already passed this year?
+          </p>
+          <p>
+            In pseudo-code, the standard "whole years lived" rule is:
+          </p>
+          <blockquote>
+            years = current_year - birth_year<br />
+            if (current_month, current_day) is before (birth_month, birth_day): years = years - 1
+          </blockquote>
+          <p>
+            That gives an accurate whole-year age. But it does not tell you how many months and days past your last birthday you
+            actually are.
+          </p>
+
+          <h2>Why 365.25 is the wrong tool</h2>
+          <p>
+            A tempting shortcut is: "count the days between the two dates, then divide by 365.25." This gives an approximate age
+            in years including fractional days. It is fine for casual conversation, but it produces subtle bugs on official forms.
+          </p>
+          <p>
+            Consider someone born on March 31, 2000, checking their age on February 28, 2020. Whole-year math says they are 19
+            years, 10 months, and 28 days old. The 365.25 shortcut computes roughly 19.913 years and does not naturally split
+            that into a calendar-correct month count - and it definitely does not warn you that March 31 does not exist in February.
+          </p>
+
+          <h2>The calendar-first algorithm</h2>
+          <p>
+            The approach used by our engine, and by most government-form calculators, is called <strong>calendar decomposition</strong>.
+            It follows three steps:
+          </p>
+          <ol>
+            <li>Find the difference in years: <em>target_year - birth_year</em>. Reduce by one if the birthday has not occurred yet this year.</li>
+            <li>Find the difference in months. If the target's day is earlier than the birth day, subtract one month and borrow days from the target's previous month.</li>
+            <li>Find the difference in days as whatever is left after the year and month reductions.</li>
+          </ol>
+          <p>
+            Once you have exact years, months, and days, the total-day count is a byproduct - not the starting point. From that total
+            day count, weeks, hours, and minutes are all safe to derive by multiplication, because inside a fixed day count those units
+            do behave uniformly.
+          </p>
+
+          <h2>Worked example</h2>
+          <p>
+            Suppose your date of birth is <strong>March 31, 2000</strong> and you want to know your exact age on
+            <strong> February 28, 2020</strong>.
+          </p>
+
+          <div class={styles.tableWrap}>
+            <table class={styles.table}>
+              <thead>
+                <tr><th>Step</th><th>Working</th><th>Result</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Years</td><td>2020 - 2000, but the birthday (March 31) has not passed - so subtract 1.</td><td>19 years</td></tr>
+                <tr><td>Months</td><td>From March 31, 2019 to February 28, 2020. Because Feb 28 comes after March 31 on the calendar walk, we count 10 full months.</td><td>10 months</td></tr>
+                <tr><td>Days</td><td>From January 31, 2020 to February 28, 2020. February 2020 is a leap year (29 days).</td><td>28 days</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            So on February 28, 2020, you were <strong>19 years, 10 months, and 28 days</strong> old. Because 2020 is a leap year,
+            one more day (February 29) would bring you to 19 years, 10 months, and 29 days - not to a "full 11 months".
+          </p>
+
+          <h2>Deriving weeks, hours, and minutes</h2>
+          <p>
+            Once you know the exact calendar difference, converting to smaller units is safe. Take the total number of days between
+            the two dates (in this example, roughly 7,269 days) and multiply:
+          </p>
+          <ul>
+            <li>Weeks = total_days &divide; 7</li>
+            <li>Hours = total_days &times; 24</li>
+            <li>Minutes = total_days &times; 24 &times; 60</li>
+          </ul>
+          <p>
+            These derived numbers are useful for personal reflection (how many hours have I been alive?), for content creators, and
+            for anyone who wants a more visceral sense of time than "31 years". They are not, however, appropriate for legal age
+            fields, which always expect calendar years or calendar years-months-days.
+          </p>
+
+          <h2>Time zones and midnight edge cases</h2>
+          <p>
+            Date-of-birth values on forms are traditionally treated as calendar dates, not timestamps. That means someone born on
+            April 1 in Tokyo is April 1 in the eyes of a passport office in London, even though the two clocks might briefly disagree.
+            Our calculator honours this convention: it normalizes both the date of birth and the calculate-at date to your local
+            calendar boundary, then does pure date arithmetic. You will never see your age flip based on the time of day you loaded
+            the page.
+          </p>
+
+          <h2>Common mistakes to avoid</h2>
+          <ul>
+            <li><strong>Dividing days by 30 for months.</strong> This is off by roughly 0.5 days per month and drifts noticeably over a lifetime.</li>
+            <li><strong>Assuming a year is 365 days.</strong> Roughly one in four years is 366 days.</li>
+            <li><strong>Ignoring the day-of-month check.</strong> Forgetting to reduce the year count when the birthday has not yet occurred is the single most common bug in homemade calculators.</li>
+            <li><strong>Using timestamp math with time zones.</strong> Storing a birthdate as an ISO date-time can produce a one-day drift when the browser is in a different zone than the server.</li>
+          </ul>
+
+          <h2>Try it yourself</h2>
+          <p>
+            The best way to internalize the math is to run a few examples through <a href="/#calculator">the calculator</a>. Try
+            picking a leap-day birthday (say, February 29, 2000), then compute your age on different March 1 dates. Notice how the
+            year rolls up cleanly and the day count resets. That is calendar arithmetic doing its job.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class={styles.related}>
+      <div class="container">
+        <div class={styles.relatedGrid}>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Leap Years and Age Calculation</h3>
+            <p>Why February 29 births need special handling and how our engine keeps them consistent.</p>
+            <a href="/guides/leap-years-and-age-calculation">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Chronological vs Biological Age</h3>
+            <p>The formula gives chronological age. Biological age is a separate concept - here is what it actually measures.</p>
+            <a href="/guides/chronological-vs-biological-age">Read guide -&gt;</a>
+          </article>
+          <article class={`card ${styles.relatedCard}`}>
+            <h3>Days Between Dates</h3>
+            <p>How to count the exact number of days between any two calendar dates without off-by-one bugs.</p>
+            <a href="/guides/days-between-dates">Read guide -&gt;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

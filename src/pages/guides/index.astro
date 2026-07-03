@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import styles from '../../styles/GuidePage.module.css';
+
+const pageTitle = 'Guides - Age Calculation, Leap Years, Zodiac Signs & More | Age Calculator Pro';
+const pageDescription =
+  'Original guides on age calculation: how age is computed, chronological vs biological age, leap-year edge cases, zodiac signs by date of birth, and age on official documents.';
+const pageKeywords = 'age calculation guides, how age is calculated, chronological age, biological age, leap year age, zodiac by birthdate';
+const canonical = 'https://agecalculatorpro.app/guides';
+
+const guides = [
+  {
+    href: '/guides/how-age-is-calculated',
+    title: 'How Age Is Calculated: The Math Behind Years, Months, and Days',
+    excerpt: 'A plain-English walkthrough of the calendar arithmetic used by our engine, with worked examples and the reason "365.25" fails on month-ends.',
+  },
+  {
+    href: '/guides/chronological-vs-biological-age',
+    title: 'Chronological Age vs Biological Age: What the Difference Actually Means',
+    excerpt: 'Chronological age counts years since birth. Biological age estimates how well your body has weathered them. This guide explains where each concept applies and where it does not.',
+  },
+  {
+    href: '/guides/leap-years-and-age-calculation',
+    title: 'Leap Years and Age Calculation: The February 29 Edge Case',
+    excerpt: 'What happens to a leap-day birthday in a non-leap year, why the Gregorian rule adds an exception every 400 years, and how our calculator handles it.',
+  },
+  {
+    href: '/guides/zodiac-signs-by-date-of-birth',
+    title: 'Zodiac Signs by Date of Birth: A Reference Table and Notes',
+    excerpt: 'The date ranges for each Western zodiac sign, cusp-day nuances, and a brief note on why astrological signs are cultural rather than scientific.',
+  },
+  {
+    href: '/guides/age-calculation-for-official-documents',
+    title: 'Calculating Age for Official Documents: Passports, School, and Jobs',
+    excerpt: 'How age is typically calculated on government forms, common eligibility cutoffs, and what to double-check before submitting an application.',
+  },
+  {
+    href: '/guides/days-between-dates',
+    title: 'Days Between Two Dates: A Practical Guide with Examples',
+    excerpt: 'How to count exact days between any two dates, why inclusive vs exclusive endpoints matter, and where the calculation is used in real life.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Age Calculator Pro',
+    url: 'https://agecalculatorpro.app/',
+  },
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Guides & Reference</h1>
+        <p>
+          Original, editorially reviewed articles that explain the math, calendar rules, and everyday context behind age calculation.
+          Each guide is written to be genuinely useful - not just a wrapper around the calculator.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Editorially reviewed</span>
+          <span class={styles.badge}>Updated regularly</span>
+          <span class={styles.badge}>No paywall</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <article class={`card ${styles.hubList}`}>
+          <h2>Browse all guides</h2>
+          <p>Pick a topic below. Each guide averages 5-8 minutes to read and links back to the calculator when relevant.</p>
+          <div class={styles.hubGrid}>
+            {guides.map((guide) => (
+              <article class={`card ${styles.hubCard}`}>
+                <h3>{guide.title}</h3>
+                <p>{guide.excerpt}</p>
+                <a href={guide.href}>Read the guide -&gt;</a>
+              </article>
+            ))}
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

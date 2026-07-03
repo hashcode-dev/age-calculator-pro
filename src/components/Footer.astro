@@ -3,17 +3,54 @@ import styles from '../styles/HomePage.module.css';
 ---
 
 <footer class={styles.footer} id="contact">
-  <div class={`container ${styles.footerInner}`}>
-    <div class={styles.brand}>
-      <img src="/favicon.svg" alt="Age Calculator Pro logo" width="24" height="24" />
-      <span>© 2026 Age Calculator Pro</span>
+  <div class="container">
+    <div class={styles.footerGrid}>
+      <div class={styles.footerCol}>
+        <div class={styles.brand}>
+          <img src="/favicon.svg" alt="Age Calculator Pro logo" width="24" height="24" />
+          <span>Age Calculator Pro</span>
+        </div>
+        <p class={styles.footerBlurb}>
+          A free, privacy-first age calculator with editorially reviewed guides. Calculations run in your browser -
+          nothing is uploaded.
+        </p>
+      </div>
+
+      <div class={styles.footerCol}>
+        <h4 class={styles.footerHeading}>Tool</h4>
+        <ul class={styles.footerList}>
+          <li><a href="/">Age Calculator</a></li>
+          <li><a href="/#calculator">Precision Age Engine</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class={styles.footerCol}>
+        <h4 class={styles.footerHeading}>Guides</h4>
+        <ul class={styles.footerList}>
+          <li><a href="/guides">All Guides</a></li>
+          <li><a href="/guides/how-age-is-calculated">How Age Is Calculated</a></li>
+          <li><a href="/guides/leap-years-and-age-calculation">Leap Years and Age</a></li>
+          <li><a href="/guides/age-calculation-for-official-documents">Age for Official Documents</a></li>
+        </ul>
+      </div>
+
+      <div class={styles.footerCol}>
+        <h4 class={styles.footerHeading}>Company &amp; Legal</h4>
+        <ul class={styles.footerList}>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/contact-us">Contact Us</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/cookie-policy">Cookie Policy</a></li>
+          <li><a href="/terms-of-service">Terms of Service</a></li>
+          <li><a href="/disclaimer">Disclaimer</a></li>
+        </ul>
+      </div>
     </div>
-    <div class={styles.footerLinks}>
-      <a href="/">Home</a>
-      <a href="/about-us">About Us</a>
-      <a href="/privacy-policy">Privacy Policy</a>
-      <a href="/terms-of-service">Terms of Service</a>
-      <a href="/contact-us">Contact</a>
+
+    <div class={styles.footerBottom}>
+      <span>&copy; 2026 Age Calculator Pro. All rights reserved.</span>
+      <span class={styles.footerBottomMeta}>Reviewed by the Age Calculator Pro editorial team.</span>
     </div>
   </div>
 </footer>

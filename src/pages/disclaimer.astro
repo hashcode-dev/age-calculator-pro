@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import styles from '../styles/PolicyPage.module.css';
+
+const pageTitle = 'Disclaimer - Age Calculator Pro';
+const pageDescription =
+  'General disclaimer for Age Calculator Pro. Our tools are provided for informational purposes only and are not a substitute for professional advice.';
+const pageKeywords = 'age calculator disclaimer, informational tool, no professional advice';
+const canonical = 'https://agecalculatorpro.app/disclaimer';
+
+const sections = [
+  { id: 'overview', title: '1. Overview' },
+  { id: 'no-professional-advice', title: '2. No Professional Advice' },
+  { id: 'accuracy', title: '3. Accuracy of Calculations' },
+  { id: 'third-party-links', title: '4. External Links and References' },
+  { id: 'advertising', title: '5. Advertising Disclosure' },
+  { id: 'errors', title: '6. Errors and Corrections' },
+  { id: 'fair-use', title: '7. Fair Use of Content' },
+  { id: 'contact', title: '8. Contact' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonical={canonical}
+  schemas={[schema]}
+>
+  <Header />
+
+  <main>
+    <section class={styles.hero}>
+      <div class="container">
+        <h1>Disclaimer</h1>
+        <p>
+          Age Calculator Pro provides date-based calculation tools and educational articles. This page explains the scope and
+          limits of the information we publish.
+        </p>
+        <div class={styles.metaRow}>
+          <span class={styles.badge}>Effective date: June 23, 2026</span>
+          <span class={styles.badge}>Last reviewed: June 23, 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class={`container ${styles.contentWrap}`}>
+        <aside class={`card ${styles.sideNav}`} aria-label="Disclaimer section navigation">
+          <h2>Contents</h2>
+          <ul>
+            {sections.map((section) => (
+              <li><a href={`#${section.id}`}>{section.title}</a></li>
+            ))}
+          </ul>
+        </aside>
+
+        <article class={`card ${styles.mainContent}`}>
+          <section id="overview">
+            <h2>1. Overview</h2>
+            <p>
+              The information, tools, and articles published on Age Calculator Pro are provided for general informational and
+              educational purposes only. While we take reasonable care to keep content accurate and up to date, we make no
+              warranties or representations about completeness, accuracy, reliability, suitability, or availability with respect
+              to the website or the information, products, services, or related graphics contained on the site for any purpose.
+            </p>
+          </section>
+
+          <section id="no-professional-advice">
+            <h2>2. No Professional Advice</h2>
+            <p>
+              Nothing on this website constitutes legal, medical, financial, tax, insurance, or other professional advice. The
+              guides section discusses topics such as age calculation, leap years, chronological versus biological age, and age
+              rules on official documents; these articles are general explainers and are not a substitute for consultation with a
+              qualified professional in the relevant field.
+            </p>
+            <p>
+              If your situation involves an important legal, medical, or financial decision, please consult a licensed
+              professional in your jurisdiction.
+            </p>
+          </section>
+
+          <section id="accuracy">
+            <h2>3. Accuracy of Calculations</h2>
+            <p>
+              Our calculators use standard Gregorian calendar arithmetic, which produces results consistent with the conventions
+              used by most government agencies, schools, and employers. However, specific institutions may apply their own
+              interpretations of "age as on" rules, leap-day handling, or minimum/maximum age windows.
+            </p>
+            <p>
+              You are responsible for verifying that the numbers we produce match the exact rule the receiving institution uses
+              before relying on the result for any legal, financial, or administrative purpose.
+            </p>
+          </section>
+
+          <section id="third-party-links">
+            <h2>4. External Links and References</h2>
+            <p>
+              This site may include links to third-party websites for reference, further reading, or convenience. We do not
+              endorse and are not responsible for the content, privacy practices, or accuracy of any third-party sites. Visiting
+              a third-party site is done at your own risk.
+            </p>
+          </section>
+
+          <section id="advertising">
+            <h2>5. Advertising Disclosure</h2>
+            <p>
+              Age Calculator Pro is free to use. To help cover operating costs, the site may display advertising, including ads
+              served by third-party ad networks such as Google AdSense. Ads may be personalized based on user activity in
+              accordance with the ad network's policies and applicable regional privacy laws.
+            </p>
+            <p>
+              We do not control the specific advertisements shown by third-party ad networks. Ad content, tracking, and cookie
+              behavior are governed by the ad network's own policies. For more detail, see our
+              <a href="/privacy-policy">Privacy Policy</a> and <a href="/cookie-policy">Cookie Policy</a>.
+            </p>
+            <p>
+              Displaying an advertisement on this site is not an endorsement of the advertiser or the advertised product.
+            </p>
+          </section>
+
+          <section id="errors">
+            <h2>6. Errors and Corrections</h2>
+            <p>
+              We aim to keep content accurate but cannot guarantee that every article or calculator output is free of errors,
+              omissions, or outdated references. If you find a mistake or believe an explanation needs updating, please contact
+              us using the details on the <a href="/contact-us">Contact Us</a> page and we will review it.
+            </p>
+          </section>
+
+          <section id="fair-use">
+            <h2>7. Fair Use of Content</h2>
+            <p>
+              The text, layout, code, and graphics on this website are the intellectual property of Age Calculator Pro unless
+              otherwise noted. You may quote short excerpts of our articles with clear attribution and a link back to the source
+              page. Systematic scraping, wholesale reproduction, or republishing of substantial portions of content without prior
+              written permission is not permitted.
+            </p>
+          </section>
+
+          <section id="contact" class={`card ${styles.contactCard}`}>
+            <h2>8. Contact</h2>
+            <p>If you have questions about this disclaimer, please contact:</p>
+            <div class={styles.contactGrid}>
+              <p>Email: hashcode.dev@gmail.com</p>
+              <p>Subject line: Age Calculator Pro Disclaimer Inquiry</p>
+              <p>Response target: within 30 days where practicable</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
